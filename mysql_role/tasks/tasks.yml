@@ -1,0 +1,21 @@
+- name: install a mysql server
+  yum:
+    name: mysql-server
+    state: latest
+- name: start a mysqld server
+  service:
+    name: mysqld
+    state: started
+    enabled: yes
+- name: start a firewall service
+  service:
+    name: firewalld
+    state: started
+    enabled: yes
+- name: permit traffic in default zone for https service
+  ansible.posix.firewalld:
+     port: " {{mysql_port}}/tcp "
+     permanent: true
+     state: enabled
+     immediate: yes
+

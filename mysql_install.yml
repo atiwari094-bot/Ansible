@@ -1,0 +1,9 @@
+- name: Example of multiple tasks
+  hosts: all
+  become: yes
+  gather_facts: no
+
+  roles:
+     - mysql
+
+
